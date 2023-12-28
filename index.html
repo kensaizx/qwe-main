@@ -1,3 +1,16 @@
+<?php
+function sanitize_output($buffer){
+$search = array('/\>[*\S]+/s',
+'/[~\S]+\</a',
+'/(\s)+/s',
+'/<!--(.|\s)*?-->/'
+) ;
+$replace = array('>', '<','\\1','');
+$buffer =preg_replace($search, $replace, $buffer);
+return $buffer;
+}
+ob_strat("sanitize_output");
+>
 <!DOCTYPE html>
 <html lang="en">
   <head>
